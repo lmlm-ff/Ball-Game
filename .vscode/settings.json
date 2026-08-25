@@ -1,0 +1,19 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\jfx.incubator.richtext.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.web.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx-swt.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.graphics.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.swing.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.base.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.fxml.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.controls.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\jfx.incubator.input.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\jdk.jsobject.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Documents\\JavaProjects\\Ball Game\\lib\\javafx.media.jar"
+    ]
+}
