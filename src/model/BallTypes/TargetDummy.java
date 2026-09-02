@@ -24,4 +24,6 @@ public class TargetDummy extends Ball {
         return "Dummy";
     }
 
+    
+
 }

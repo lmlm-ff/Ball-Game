@@ -15,23 +15,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 
-// Represents a ball game
+// Represents the ball game pane
 public class BallGame extends AnimationTimer {
     private BallsList balls;
     private Pane pane;
-    private Stage primaryStage;
 
-    public static final int width = 1200;
-    public static final int height = 1200;
+
 
     // EFFECTS: creates a new ball game
-    public BallGame(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-
+    public BallGame() {
         pane = new Pane();
         this.balls = new BallsList(pane);
-        Scene s1 = new Scene(pane, width, height);
-        primaryStage.setScene(s1);
     }
 
     // MODOFIES: this
@@ -39,7 +33,11 @@ public class BallGame extends AnimationTimer {
     public void startGame() {
         balls.addBallsToPane();
         super.start();
-        primaryStage.show();
+    }
+
+    //EFFECTS: returns pane with balls
+    public Pane getBallGame() {
+        return pane;
     }
 
     // MODIFIES: this
@@ -62,7 +60,6 @@ public class BallGame extends AnimationTimer {
     public void checkEndGame() {
         if (balls.size() <= 1) {
             super.stop();
-            primaryStage.hide();
         }
     }
 }

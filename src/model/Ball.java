@@ -1,10 +1,13 @@
 package model;
 
 import ui.BallGame;
+import ui.Game;
 
 import javafx.scene.shape.*;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.util.List;
 
@@ -21,7 +24,7 @@ public abstract class Ball {
     protected double damage;
 
     private double mass;
-    private Circle ball;
+    private StackPane ball;
     private final double massRatio = 0.3;
 
     // EFFECTS: creates a ball with given radius, x and y coordinate, and speed
@@ -36,17 +39,27 @@ public abstract class Ball {
         this.mass = radius * massRatio; // mass should directly correlate to radius
         this.health = health;
 
-        ball = new Circle(radius);
-        ball.setCenterX(x);
-        ball.setCenterY(y);
-        ball.setFill(color);
+        ball = new StackPane();
+        Circle circle = new Circle(radius);
+        circle.setFill(color);
+        Text label = new Text(this.getTag());
+        label.setFill(Color.WHITE);
+        label.setStroke(Color.BLACK);
+        label.setStrokeWidth(2);
+        label.setStyle("-fx-font-size: 50 px");
+
+
+        ball.getChildren().addAll(circle, label);
+
+        ball.setLayoutX(x - radius);
+        ball.setLayoutY(y - radius);
     }
 
     // MODOFIES: this
     // EFFECTS: sets x level of ball, adjusts to be within border with 1 unit spacing if ball would be outisde or stuck in border
     private void setX(double x) {
-        if (x + radius > BallGame.width) {
-            this.x = BallGame.width - radius - 1;
+        if (x + radius > Game.gamePanelWidth) {
+            this.x = Game.gamePanelWidth - radius - 1;
         } else if (x - radius < 0) {
             this.x = radius + 1;
         } else {
@@ -57,8 +70,8 @@ public abstract class Ball {
     // MODIFIES: this
     // EFFECTS: sets y level of ball, adjusts to be within border with 1 unit spacing if ball would be outside or stuck in border
     private void setY(double y) {
-        if (y + radius > BallGame.height) {
-            this.y = BallGame.height - radius - 1;
+        if (y + radius > Game.gamePanelHeight) {
+            this.y = Game.gamePanelHeight - radius - 1;
         } else if (y - radius < 0) {
             this.y = radius + 1;
         } else {
@@ -83,14 +96,14 @@ public abstract class Ball {
         this.x += dx;
         this.y += dy;
 
-        ball.setCenterX(x);
-        ball.setCenterY(y);
+        ball.setLayoutX(x - radius);
+        ball.setLayoutY(y - radius);
         
     }
 
     // EFFECTS: checks whether ball's x coordinate is in boundaries
     private boolean checkHorizontalBound() {
-        if (x + radius > BallGame.width) {
+        if (x + radius > Game.gamePanelWidth) {
             return false;
         }
 
@@ -103,7 +116,7 @@ public abstract class Ball {
 
     // EFFECTS: checks whether ball's y coordinate is in boundaries
     private boolean checkVerticalBound() {
-        if (y + radius > BallGame.height) {
+        if (y + radius > Game.gamePanelHeight) {
             return false;
         }
 
@@ -206,7 +219,7 @@ public abstract class Ball {
     // EFFECTS: scales damage accordingly for both balls
     public abstract void scalePower();
 
-    public Circle getBall() {
+    public StackPane getBall() {
         return ball;
     }
 
@@ -275,4 +288,5 @@ public abstract class Ball {
     }
 
     public abstract String getTag();
+
 }

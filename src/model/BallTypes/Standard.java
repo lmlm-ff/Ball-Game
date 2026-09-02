@@ -10,7 +10,7 @@ public class Standard extends Ball {
 
     // EFFECTS: creates a new standard ball
     public Standard(double x, double y) {
-        super(x, y, 20, 20, 20, 100, Color.GRAY);
+        super(x, y, 20, 20, 50, 100, Color.GRAY);
         super.damage = 100;
     }
 
