@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -38,16 +37,20 @@ public class BallsList implements Iterable<Ball> {
     public void updateBallsList() {
         for (Ball ball: balls) {
             ball.update();
-            this.checkCollision();
             ball.checkStatus(scene, this);
+
         }
+
+        this.checkCollision();
     }
 
     // MODIFIES: Ball
     // EFFECTS: checks for collision between balls and adjusts direction accordingly
     private void checkCollision() {
-        for (Ball ball1: balls) {
-            for (Ball ball2: balls) {
+        for (int i1 = 0; i1 < balls.size(); i1++) {
+            Ball ball1 = balls.get(i1);
+            for (int i2 = i1 + 1; i2 < balls.size(); i2++) {
+                Ball ball2 = balls.get(i2);
                 if (!ball1.equals(ball2)) { // prevent checking a ball with itself
                     double combinedRadius = ball1.getRadius() + ball2.getRadius();
                     if (Math.abs(ball1.getX() - ball2.getX()) <=  combinedRadius &&  // impossible for balls to collide if x or y distance is further than combined radius
@@ -77,8 +80,8 @@ public class BallsList implements Iterable<Ball> {
         ball2.handleDamage(ball1);
         ball1.scalePower();
         ball2.scalePower();
-        System.out.println(ball1.getTag() + " has health remaning: " + ball1.getHealth());
-        System.out.println(ball2.getTag() + " has health remaning: " + ball2.getHealth() + "\n");
+        //System.out.println(ball1.getTag() + " has health remaning: " + ball1.getHealth());
+        //System.out.println(ball2.getTag() + " has health remaning: " + ball2.getHealth() + "\n");
 
     }
 

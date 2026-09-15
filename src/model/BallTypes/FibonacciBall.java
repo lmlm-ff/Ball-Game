@@ -10,7 +10,7 @@ public class FibonacciBall extends Ball {
 
     // EFFECTS: creates a new standard ball
     public FibonacciBall(double x, double y) {
-        super(x, y, 20, 20, 50, 100, Color.BROWN);
+        super(x, y, 10, 10, 50, 100, Color.BROWN);
         super.damage = 0;
     }
 

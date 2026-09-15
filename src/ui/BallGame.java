@@ -20,8 +20,6 @@ public class BallGame extends AnimationTimer {
     private BallsList balls;
     private Pane pane;
 
-
-
     // EFFECTS: creates a new ball game
     public BallGame() {
         pane = new Pane();
@@ -31,6 +29,7 @@ public class BallGame extends AnimationTimer {
     // MODOFIES: this
     // EFFECTS: starts game
     public void startGame() {
+        
         balls.addBallsToPane();
         super.start();
     }
@@ -46,7 +45,7 @@ public class BallGame extends AnimationTimer {
     @Override
     public void handle(long arg0) {
         balls.updateBallsList();
-        this.checkEndGame();
+        //this.checkEndGame();
 
     }
 

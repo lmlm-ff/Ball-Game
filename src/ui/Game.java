@@ -35,8 +35,23 @@ public class Game extends Application {
 
         primaryStage.setTitle("Ball Game");
         primaryStage.setScene(scene);
+
+        long startTime = System.nanoTime();
+        
+        
+        // long checkpoint3 = System.nanoTime();
+        // long end = System.nanoTime();
+        // System.out.println("Checkpoint 3: " + (end - checkpoint3));
+
         game.startGame();
-        primaryStage.show();        
+        long checkpoint1 = System.nanoTime();
+        System.out.println("CheckPoint1: " + (checkpoint1 - startTime));
+        primaryStage.show();  
+        
+        long checkpoint2 = System.nanoTime();
+        System.out.println("CHeckpoint2: " + (checkpoint2 - checkpoint1));
+        
+        
     }
 
     // EFFECTS: creates a panel to display information about the game
@@ -51,7 +66,7 @@ public class Game extends Application {
     // EFFECTS: adds balls to the BallsList to be displayed in the ui
     public void setBalls(BallsList lob) {
         //lob.addBall(new FibonacciBall(250, 499));
-        lob.addBall(new Standard(200, 400));
+        lob.addBall(new FibonacciBall(900, 400));
         lob.addBall(new TargetDummy(500, 500, 20000));
     }
 

@@ -7,7 +7,7 @@ import model.Ball;
 public class TargetDummy extends Ball {
 
     public TargetDummy(double x, double y, double health) {
-        super(x, y, 0, 0, 300, health, Color.BLACK);
+        super(x, y, 10, 10, 300, health, Color.BLACK);
     }
 
     @Override

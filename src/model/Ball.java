@@ -40,19 +40,23 @@ public abstract class Ball {
         this.health = health;
 
         ball = new StackPane();
+        ball.setMinSize(radius * 2, radius * 2);
+        ball.setMaxSize(radius * 2, radius * 2);
         Circle circle = new Circle(radius);
         circle.setFill(color);
         Text label = new Text(this.getTag());
         label.setFill(Color.WHITE);
         label.setStroke(Color.BLACK);
-        label.setStrokeWidth(2);
-        label.setStyle("-fx-font-size: 50 px");
+        label.setStrokeWidth(radius * 0.03);
+        label.setStyle("-fx-font-size: " + radius * 0.8 + " px");
 
 
         ball.getChildren().addAll(circle, label);
 
         ball.setLayoutX(x - radius);
         ball.setLayoutY(y - radius);
+
+        //ball = new Circle(x, y, radius); 
     }
 
     // MODOFIES: this
@@ -60,10 +64,12 @@ public abstract class Ball {
     private void setX(double x) {
         if (x + radius > Game.gamePanelWidth) {
             this.x = Game.gamePanelWidth - radius - 1;
-        } else if (x - radius < 0) {
+        } 
+        
+        if (x - radius < 0) {
             this.x = radius + 1;
         } else {
-            this.x = x;
+            this.x = x - radius;
         }
     }
 
@@ -72,7 +78,9 @@ public abstract class Ball {
     private void setY(double y) {
         if (y + radius > Game.gamePanelHeight) {
             this.y = Game.gamePanelHeight - radius - 1;
-        } else if (y - radius < 0) {
+        }
+        
+        if (y - radius < 0) {
             this.y = radius + 1;
         } else {
             this.y = y;
@@ -98,23 +106,25 @@ public abstract class Ball {
 
         ball.setLayoutX(x - radius);
         ball.setLayoutY(y - radius);
+        // ball.setCenterX(x);
+        // ball.setCenterY(y);
         
     }
 
-    // EFFECTS: checks whether ball's x coordinate is in boundaries
+    // EFFECTS: return true if ball's x coordinate is in boundaries
     private boolean checkHorizontalBound() {
         if (x + radius > Game.gamePanelWidth) {
             return false;
         }
 
-        if (x - radius < 0) {
+        if (x  - radius < 0) {
             return false;
         }
 
         return true;
     }
 
-    // EFFECTS: checks whether ball's y coordinate is in boundaries
+    // EFFECTS: return true if ball's y coordinate is in boundaries
     private boolean checkVerticalBound() {
         if (y + radius > Game.gamePanelHeight) {
             return false;
