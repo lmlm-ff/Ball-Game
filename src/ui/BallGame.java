@@ -28,8 +28,7 @@ public class BallGame extends AnimationTimer {
 
     // MODOFIES: this
     // EFFECTS: starts game
-    public void startGame() {
-        
+    public void startGame() { 
         balls.addBallsToPane();
         super.start();
     }

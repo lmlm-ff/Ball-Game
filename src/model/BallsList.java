@@ -2,12 +2,14 @@ package model;
 
 import java.util.List;
 import javafx.scene.layout.Pane;
+import model.ObserverPattern.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 // Represents a list of balls with a dedicated pane for each list
-public class BallsList implements Iterable<Ball> {
+public class BallsList implements Iterable<Ball>, Subject {
+    private Observer observer;
     private List<Ball> balls;
     private Pane scene;
 
@@ -80,8 +82,8 @@ public class BallsList implements Iterable<Ball> {
         ball2.handleDamage(ball1);
         ball1.scalePower();
         ball2.scalePower();
-        //System.out.println(ball1.getTag() + " has health remaning: " + ball1.getHealth());
-        //System.out.println(ball2.getTag() + " has health remaning: " + ball2.getHealth() + "\n");
+        this.update(ball1, ball2);
+
 
     }
 
@@ -89,4 +91,22 @@ public class BallsList implements Iterable<Ball> {
     public int size() {
         return balls.size();
     }
+
+    @Override
+    public void add(Observer observer) {
+        this.observer = observer;
+        
+    }
+
+    @Override
+    public void remove(model.ObserverPattern.Observer observer) {
+        this.observer = null;
+    }
+
+    @Override
+    public void update(Ball ball1, Ball ball2) {
+        this.observer.update(ball1, ball2);
+    }
+
+    
 }

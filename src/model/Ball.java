@@ -24,7 +24,7 @@ public abstract class Ball {
     protected double damage;
 
     private double mass;
-    private StackPane ball;
+    private Circle ball;
     private final double massRatio = 0.3;
 
     // EFFECTS: creates a ball with given radius, x and y coordinate, and speed
@@ -39,24 +39,27 @@ public abstract class Ball {
         this.mass = radius * massRatio; // mass should directly correlate to radius
         this.health = health;
 
-        ball = new StackPane();
-        ball.setMinSize(radius * 2, radius * 2);
-        ball.setMaxSize(radius * 2, radius * 2);
-        Circle circle = new Circle(radius);
-        circle.setFill(color);
-        Text label = new Text(this.getTag());
-        label.setFill(Color.WHITE);
-        label.setStroke(Color.BLACK);
-        label.setStrokeWidth(radius * 0.03);
-        label.setStyle("-fx-font-size: " + radius * 0.8 + " px");
+        // ball = new StackPane();
+        // ball.setMinSize(radius * 2, radius * 2);
+        // ball.setMaxSize(radius * 2, radius * 2);
+        // Circle circle = new Circle(radius);
+        // circle.setFill(color);
+        // Text label = new Text(this.getTag());
+        // label.setFill(Color.WHITE);
+        // label.setStroke(Color.BLACK);
+        // label.setStrokeWidth(radius * 0.03);
+        // label.setStyle("-fx-font-size: " + radius * 0.8 + " px");
+
+        // ball.getChildren().addAll(circle, label);
 
 
-        ball.getChildren().addAll(circle, label);
+        ball = new Circle(x, y, radius); 
+        ball.setFill(color);
 
-        ball.setLayoutX(x - radius);
-        ball.setLayoutY(y - radius);
+        ball.setCenterX(x);
+        ball.setCenterY(y);
 
-        //ball = new Circle(x, y, radius); 
+        
     }
 
     // MODOFIES: this
@@ -104,10 +107,10 @@ public abstract class Ball {
         this.x += dx;
         this.y += dy;
 
-        ball.setLayoutX(x - radius);
-        ball.setLayoutY(y - radius);
-        // ball.setCenterX(x);
-        // ball.setCenterY(y);
+        // ball.setLayoutX(x - radius);
+        // ball.setLayoutY(y - radius);
+        ball.setCenterX(x);
+        ball.setCenterY(y);
         
     }
 
@@ -229,7 +232,7 @@ public abstract class Ball {
     // EFFECTS: scales damage accordingly for both balls
     public abstract void scalePower();
 
-    public StackPane getBall() {
+    public Circle getBall() {
         return ball;
     }
 

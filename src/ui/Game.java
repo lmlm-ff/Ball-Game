@@ -2,11 +2,14 @@ package ui;
 
 import java.util.Random;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import model.BallsList;
 import model.BallTypes.*;
+import ui.tabs.LabelPanel;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -23,43 +26,23 @@ public class Game extends Application {
         BallGame game = new BallGame();
         this.setBalls(game.getBallList());
         game.getBallGame().setPrefSize(gamePanelWidth, gamePanelHeight);
-        Pane label = this.getLabels();
 
         main.setCenter(game.getBallGame());
+
+        LabelPanel labelPanel = new LabelPanel(game.getBallList().get(0), game.getBallList().get(1));
+        SplitPane label = labelPanel.getLabelPanel();
+
         main.setBottom(label);
 
         main.setStyle("-fx-background-color: lightblue;");
-        label.setStyle("-fx-background-color: white;");
+        
 
         Scene scene = new Scene(main, gamePanelWidth, gamePanelHeight + labelPaneHeight);
 
         primaryStage.setTitle("Ball Game");
         primaryStage.setScene(scene);
-
-        long startTime = System.nanoTime();
-        
-        
-        // long checkpoint3 = System.nanoTime();
-        // long end = System.nanoTime();
-        // System.out.println("Checkpoint 3: " + (end - checkpoint3));
-
         game.startGame();
-        long checkpoint1 = System.nanoTime();
-        System.out.println("CheckPoint1: " + (checkpoint1 - startTime));
-        primaryStage.show();  
-        
-        long checkpoint2 = System.nanoTime();
-        System.out.println("CHeckpoint2: " + (checkpoint2 - checkpoint1));
-        
-        
-    }
-
-    // EFFECTS: creates a panel to display information about the game
-    public Pane getLabels() {
-        Pane labels = new Pane();
-        labels.setPrefSize(gamePanelWidth, labelPaneHeight);
-        
-        return labels;
+        primaryStage.show(); 
     }
 
     // MODIFIES: BallsList, BallGame, this
